@@ -5,5 +5,21 @@
   <%= @tweeet.tweeet %>
 </p>
 
+<% @comments.each do |comment| %>
+<%= comment.body %>
+<% if comment.user == current_user  %>
+<h1>hello world</h1>
+
+<% end %>
+<% end %>
+
+<%= form_for [@tweeet,@comment] do |f| %>
+  <%= f.text_field :body %>
+  <%= f.hidden_field :user_id, :value=> current_user.id %>
+  <%= f.hidden_field :post_id, :value=> @tweeet.id %><br>
+  <%= f.submit 'Add Comment',class: "button is-info" %>
+
+<% end %>
+
 <%= link_to 'Edit', edit_tweeet_path(@tweeet) %> |
 <%= link_to 'Back', tweeets_path %>
