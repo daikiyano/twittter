@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'registrations'}
   get '/users/sign_out' => 'devise/sessions#destroy'
     root "tweeets#index"
+    resources :users
   resources :tweeets do
     resources :comments
   end

@@ -5,6 +5,9 @@ ruby '2.5.1'
 gem 'carrierwave'
 gem 'toastr-rails'
 gem 'jquery-rails'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
