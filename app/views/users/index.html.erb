@@ -1,0 +1,23 @@
+
+<h1 style="font-size:30px;">All user</h1>
+
+<div class="wrapper">
+
+
+<%= will_paginate %>
+    <% @users.each do |user| %>
+    <div style="margin-left: 600px;">
+      <h2 style="font-size:20px;"><%= user.username %></h2>
+       <% if user.image.url.nil? %>
+          <figure class="image is-128x128">
+           <%= image_tag "https://bulma.io/images/placeholders/128x128.png",class: "is-rounded",style: "height:128px; width:128px;" %>
+           </figure>
+       <% else %>
+          <figure class="image is-128x128" >
+         <%= image_tag (user.image.url) ,style: "height:128px; width:128px;" %>
+       <% end %>
+    </div>
+    <% end %>
+
+<%= will_paginate %>
+  </div>
