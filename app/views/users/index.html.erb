@@ -14,7 +14,9 @@
            </figure>
        <% else %>
           <figure class="image is-128x128" >
+        <%= link_to user_path(user) do %>
          <%= image_tag (user.image.url) ,style: "height:128px; width:128px;" %>
+        <% end %>
        <% end %>
     </div>
     <% end %>

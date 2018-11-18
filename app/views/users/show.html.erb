@@ -1,0 +1,12 @@
+<%= @user.username %>
+<% if @user.image.url.nil? %>
+   <figure class="image is-128x128">
+    <%= image_tag "https://bulma.io/images/placeholders/128x128.png",class: "is-rounded",style: "height:128px; width:128px;" %>
+    </figure>
+<% else %>
+   <figure class="image is-128x128" >
+  <%= image_tag (@user.image.url) ,style: "height:128px; width:128px;" %>
+ <% end %>
+
+ <%= render 'stats' %>
+ <%= render 'follow_form' %>

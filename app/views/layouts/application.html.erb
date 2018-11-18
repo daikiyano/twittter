@@ -8,18 +8,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
 
   <body>
-    <% if flash.any? %>
-    <script type="text/javascript">
-      <% flash.each do |key,value| %>
-      <% type = key.to_s.gsub('alert','error').gsub('notice','success') %>
-      toast.<%= type %>('<%= value %>')
-      <% end %>
-    </script>
-    <% end %>
 
     <% if flash[:notice] %>
       <div class="notification is-primary global-notification">
@@ -66,9 +58,6 @@
               <%= link_to "Sign in", new_user_session_path,class: "button is-info is-inverted"%>
             </p>
             <% end %>
-
-
-
           </div>
         </div>
       </div>
