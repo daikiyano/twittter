@@ -1,11 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<% if user_signed_in? %>
-<%= render 'profile' %>
-<% else %>
-<%= render 'trends' %>
-<% end %>
-
 <p>
   <strong>Tweeet:</strong>
   <%= @tweeet.tweeet %>

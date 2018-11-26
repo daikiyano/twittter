@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {registrations: 'registrations'}
-  get '/users/sign_out' => 'devise/sessions#destroy'
-    root "tweeets#index"
+
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+
+      get 'static_pages/home'
+      get 'static_pages/about'
+      devise_for :users, :controllers => {registrations: 'registrations'}
+        get '/users/sign_out' => 'devise/sessions#destroy'
+
+
     resources :users  do
       member do
         get :following, :followers
       end
     end
-  resources :tweeets do
-    resources :comments
-  end
-  resources :relationships,       only: [:create, :destroy]
+resources :tweeets do
+      resources :comments
+    end
+    resources :relationships,       only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

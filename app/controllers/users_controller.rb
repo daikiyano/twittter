@@ -12,7 +12,7 @@ class UsersController < ApplicationController
    @title = "Followers"
    @user  = User.find(params[:id])
    @users = @user.followers.paginate(page: params[:page])
-   render 'show_follow'
+   render 'show_follower'
  end
 
   def index
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tweeet = @user.tweeets.all
   end
 
 end

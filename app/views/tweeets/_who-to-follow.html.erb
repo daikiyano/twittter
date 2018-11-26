@@ -1,58 +1,30 @@
 <div class="column">
   <nav class="panel">
     <p class="panel-heading">Who to Follow</p>
-  <div class="panel-block">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-32x32">
-          <img src="https://bulma.io/images/placeholders/64x64.png" alt="">
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong>John Smith</strong>
-            <small>@Johnsmith</small>
-          </p>
-        </div>
-      </div>
-    </article>
-  </div>
+    <% @users.each do |user| %>
 
-  <div class="panel-block">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-32x32">
-          <img src="https://bulma.io/images/placeholders/64x64.png" alt="">
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong>John Smith</strong>
-            <small>@Johnsmith</small>
-          </p>
+    <%= link_to user_path(user) do %>
+        <div class="panel-block user-list">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-32x32">
+                <% if user.image.url.nil? %>
+                    <%= image_tag "https://bulma.io/images/placeholders/32x32.png",style: "height:32px; width:32px;" %>
+                <% else %>
+                  <%= image_tag (user.image.url) ,style: "height:32px; width:32px;" %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <%= user.username %>
+                </p>
+              </div>
+            </div>
+          </article>
         </div>
-      </div>
-    </article>
-  </div>
-
-  <div class="panel-block">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-32x32">
-          <img src="https://bulma.io/images/placeholders/64x64.png" alt="">
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong>John Smith</strong>
-            <small>@Johnsmith</small>
-          </p>
-        </div>
-      </div>
-    </article>
-  </div>
+        <% end %>
+    <% end %>
 </nav>
 </div>

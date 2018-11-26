@@ -1,31 +1,18 @@
-<% provide(:title, @title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
+<%= render 'profile' %>
 
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Microposts:</b>
-    </section>
-    <section class="stats">
-      <%= render 'stats' %>
-      <% if @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
+<h1 style="font-size:30px;">Folloing</h1>
+<% @user.following.each do |user| %>
+<table>
+<tr>
+  <td>  <%= user.username %> </td>
+  <td><% if user.image.url.nil? %>
+      <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;",class: "image" %>
+  <% else %>
+    <%= image_tag (user.image.url) ,style: "height:66px; width:66px;",class: "image" %>
+  <% end %>
+  </td>
+  <td><%= link_to '詳細', user_path(user) %></td>
+</tr>
 
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-      <ul class="users follow">
-
-        <%= render @users %>
-      </ul>
-      <%= will_paginate %>
-    <% end %>
-  </div>
-</div>
+</table>
+<% end %>
