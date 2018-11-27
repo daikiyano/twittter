@@ -1,0 +1,18 @@
+<%= render 'profile' %>
+
+<h1 style="font-size:30px;">Folloing</h1>
+<% @user.following.each do |user| %>
+<table>
+<tr>
+  <td>  <%= user.username %> </td>
+  <td><% if user.image.url.nil? %>
+      <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;",class: "image" %>
+  <% else %>
+    <%= image_tag (user.image.url) ,style: "height:66px; width:66px;",class: "image" %>
+  <% end %>
+  </td>
+  <td><%= link_to '詳細', user_path(user) %></td>
+</tr>
+
+</table>
+<% end %>

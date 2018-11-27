@@ -8,67 +8,97 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
 
   <body>
     <% if flash.any? %>
-    <script type="text/javascript">
+      <script type="text/javascript">
       <% flash.each do |key,value| %>
-      <% type = key.to_s.gsub('alert','error').gsub('notice','success') %>
-      toast.<%= type %>('<%= value %>')
+      <% type = key.to_s.gsub('alert','error').gsub('notice','info') %>
+        toastr.<%= type %>('<%= value %>')
       <% end %>
-    </script>
+      </script>
     <% end %>
 
-    <% if flash[:notice] %>
-      <div class="notification is-primary global-notification">
-        <p class="notice"><%= notice %></p>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-    <div class="notification is-danger global-notification">
-      <p class="alert"><%= alert %></p>
-    </div>
-    <% end %>
-    <nav class="navbar is-info">
+      <script type="text/javascript">
+        $(document).ready(function(){
+          var globalnav = $('#global-nav');
+          var navheight = globalnav.outerHeight(true);
+          var navoffset = globalnav.offset().top;
+          $(window).scroll(function(){
+            if($(this).scrollTop() > navoffset){
+              globalnav.css({
+                'position':'fixed',
+                'top':0,
+                'width':'100%',
+              });
+              $('#main').css('margin-top',navheight);
+            } else {
+              globalnav.css('position','relative');
+              $('#main').css('margin-top','auto');
+            }
+          });
+        });
+      </script>
+
+    <nav class="navbar is-link" id="global-nav" style="opacity:0.5;">
       <div class="navbar-brand">
-
-      <%= link_to root_path, class: "navbar-item" do %>
-        <h1 class="title is-5">Twitter</h1>
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-5">Twitter</h1>
         <% end %>
         <div class="navbar-burger burger" data-target="navbarExample">
-          <span></span>
+          <span>ああ</span>
           <span></span>
           <span></span>
         </div>
-
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+      <a class="navbar-item">
+        about
+      </a>
+      <a class="navbar-item">
+        Contact
+      </a>
     </div>
+  </div>
 
     <div id="navbarExample" class="navbar-menu">
       <div class="navbar-end">
           <div class="field is-grouped">
             <% if user_signed_in? %>
             <p class="control">
-              <%= link_to "New Tweeet", new_tweeet_path, class: "button is-info is-inverted"%>
+              <%= link_to "find User", users_path,class: "nav-button button is-info is-outlined is-rounded is-inverted"%>
+            </p>
+            <p class="control">
+              <%= link_to "New Tweeet", new_tweeet_path, class: "nav-button button is-info is-outlined is-rounded is-inverted"%>
             </p>
             <% end %>
             <% if user_signed_in? %>
-              <%= link_to current_user.name ,  edit_user_registration_path, class: "button is-info "%>
+            <figure>
+              <%= link_to user_path(current_user) do %>
+                <% if current_user.image.url.nil? %>
+                    <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+                <% else %>
+                  <%= image_tag (current_user.image.url) ,style: "height:66px; width:66px;",class:'image' %>
+                <% end %>
+                <% end %>
+            </figure>
               <p class="control">
-                <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "button is-info is-inverted"%>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete,class: "nav-button button is-info is-outlined is-rounded is-inverted"%>
               </p>
             <% else %>
             <p class="control">
-              <%= link_to "Sign Up", new_user_registration_path,class: "button is-info is-inverted"%>
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-button button is-info is-outlined is-rounded is-inverted"%>
             </p>
             <p class="control">
-              <%= link_to "Sign in", new_user_session_path,class: "button is-info is-inverted"%>
+              <%= link_to "Sign in", new_user_session_path,class: "nav-button button is-info is-outlined is-rounded is-inverted"%>
             </p>
             <% end %>
-
-
-
           </div>
         </div>
       </div>
@@ -76,7 +106,15 @@
     </nav>
     <%= yield %>
 
-
+    <footer class="footer navbar is-link" style="opacity:0.5;">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
 
   </body>
 </html>

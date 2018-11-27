@@ -1,0 +1,38 @@
+<%= render 'profile' %>
+
+ <% @tweeet.each do |tweeet| %>
+
+   <div class="box">
+     <article class="media">
+       <div class="media-left">
+         <figure class="image is-64x64">
+           <% if tweeet.user.image.url.nil? %>
+               <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+           <% else %>
+             <%= image_tag (tweeet.user.image.url) ,style: "height:66px; width:66px;" %>
+           <% end %>
+         </figure>
+       </div>
+       <div class="media-content">
+         <div class="content">
+           <strong><%= tweeet.user.name %></strong>
+           <small>@<%= tweeet.user.username %></small>
+           <p><%= tweeet.tweeet %></p>
+         </div>
+           <nav class="level">
+             <div class="level-left is-mobile">
+               <%= link_to tweeet, class: "lavel-item" do %>
+                 <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+               <% end %>
+               <%= link_to edit_tweeet_path(tweeet),class: "level-item" do %>
+                 <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+               <% end %>
+               <%= link_to tweeet, method: :delete, data:{confirm: "Are you sure you want to delete this tweeet?"} do %>
+               <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+               <% end %>
+             </div>
+           </nav>
+         </div>
+      </article>
+ </div>
+ <% end %>
