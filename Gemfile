@@ -9,7 +9,6 @@ gem 'jquery-ui-rails'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate'
-gem 'sqlite3', :group => [:development, :test]
 gem 'pg', :group => :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
