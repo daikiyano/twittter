@@ -8,7 +8,9 @@
                 <% if current_user.image.url.nil? %>
                     <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
                 <% else %>
-                  <%= image_tag (current_user.image.url) ,style: "height:66px; width:66px;" %>
+                  <%= link_to user_path(current_user) do %>
+                    <%= image_tag (current_user.image.url) ,style: "height:66px; width:66px;" %>
+                  <% end %>
                 <% end %>
             </figure>
           </div>

@@ -44,7 +44,7 @@
 
     <nav class="navbar is-link" id="global-nav" style="opacity:0.5;">
       <div class="navbar-brand">
-        <%= link_to root_path, class: "navbar-item" do %>
+        <%= link_to tweeets_path, class: "navbar-item" do %>
           <h1 class="title is-5">Twitter</h1>
         <% end %>
         <div class="navbar-burger burger" data-target="navbarExample">
@@ -55,15 +55,13 @@
       </div>
       <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
+
+        <%= link_to "Home", static_pages_home_path,class: "navbar-item" %>
+
       <a class="navbar-item">
         about
       </a>
-      <a class="navbar-item">
-        Contact
-      </a>
+        <%= link_to "Contact",static_pages_contact_path,class: "navbar-item" %>
     </div>
   </div>
 
@@ -102,7 +100,6 @@
           </div>
         </div>
       </div>
-
     </nav>
     <%= yield %>
 
