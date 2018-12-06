@@ -1,0 +1,9 @@
+<% if Like.find_by(user_id: current_user.id, tweeet_id: tweeet.id) %>
+　<%= link_to("/likes/#{tweeet.id}/destroy", {method: "post"}) do %>
+    　<span class="fa fa-heart like-btn-unlike"></span>
+    <% end %>
+ <% else %>
+ 　<%= link_to("/likes/#{tweeet.id}/create", {method: "post"}) do %>
+       <span class="fa fa-heart like-btn"></span>
+     <% end %>
+ <% end %>

@@ -3,6 +3,7 @@
 <p>
   <strong>Tweeet:</strong>
   <%= @tweeet.tweeet %>
+  <%= @likes_count %>
 </p>
 
 <% @comments.each do |comment| %>
@@ -11,7 +12,6 @@
 <% if comment.user == current_user  %>
 <i class="fas fa-trash-alt"></i>
 <h1><%= link_to 'Delete Comment',  tweeet_comment_path(comment.tweeet_id,comment.id), method: :delete,data: {confirm: 'Are you sure this comment delete ?'} %></h1>
-
 <% end %>
 <% end %>
 

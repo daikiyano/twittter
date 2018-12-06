@@ -15,8 +15,10 @@ class TweeetsController < ApplicationController
   # GET /tweeets/1.json
   def show
     @tweeet = Tweeet.find(params[:id])
+    @likes_count = Like.where(tweeet_id: @tweeet.id).count
     @comments = @tweeet.comments
     @comment = Comment.new
+
 
   end
 
