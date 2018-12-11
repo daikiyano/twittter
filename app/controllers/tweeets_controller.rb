@@ -77,6 +77,6 @@ class TweeetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweeet_params
-      params.require(:tweeet).permit(:tweeet)
+      params.require(:tweeet).permit(:tweeet,:image)
     end
 end

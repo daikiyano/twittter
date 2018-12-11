@@ -34,6 +34,9 @@
           <strong><%= tweeet.user.name %></strong>
           <small>@<%= tweeet.user.username %></small>
           <p><%= tweeet.tweeet %></p>
+          <% if tweeet.image.attached? %>
+            <%= image_tag tweeet.image,style: 'height: 300px; width:300px;' %>
+          <% end %>
         </div>
           <nav class="level">
             <div class="level-left is-mobile">
