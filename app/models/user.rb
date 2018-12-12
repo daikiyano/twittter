@@ -1,11 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-    mount_uploader :image, ImagesUploader
-        devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-         has_many :tweeets, dependent: :destroy
-         has_many :comments, dependent: :destroy
+
+      mount_uploader :image, ImagesUploader
+        has_one_attached :avatar
+          devise :database_authenticatable, :registerable,
+            :recoverable, :rememberable, :validatable
+          has_many :tweeets, dependent: :destroy
+          has_many :comments, dependent: :destroy
 
          has_many :active_relationships, class_name: "Relationship",  foreign_key: "follower_id",dependent: :destroy
          has_many :following, through: :active_relationships, source: :followed
@@ -18,7 +20,7 @@ class User < ApplicationRecord
            following << other_user
          end
 
-          def unfollow(other_user)
+         def unfollow(other_user)
             active_relationships.find_by(followed_id: other_user.id).destroy
          end
             # 現在のユーザーがフォローしてたらtrueを返す
