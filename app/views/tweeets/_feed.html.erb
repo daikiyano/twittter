@@ -3,10 +3,12 @@
   <article class="media box">
     <figure class="media-left">
       <p class="image is-64x64">
-        <% if current_user.image.url.nil? %>
-            <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+        <% if current_user.avatar.attached? %>
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag current_user.avatar ,style: "height:66px; width:66px;" %>
+          <% end %>
         <% else %>
-          <%= image_tag (current_user.image.url) ,style: "height:66px; width:66px;" %>
+            <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
         <% end %>
       </p>
 
@@ -22,10 +24,10 @@
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
-          <% if tweeet.user.image.url.nil? %>
-              <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+          <% if tweeet.user.avatar.attached? %>
+            <%= image_tag tweeet.user.avatar ,style: "height:66px; width:66px;" %>
           <% else %>
-            <%= image_tag (tweeet.user.image.url) ,style: "height:66px; width:66px;" %>
+              <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
           <% end %>
         </figure>
       </div>

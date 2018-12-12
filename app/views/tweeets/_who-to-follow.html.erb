@@ -2,16 +2,15 @@
   <nav class="panel">
     <p class="panel-heading">Who to Follow</p>
     <% @users.each do |user| %>
-
-    <%= link_to user_path(user) do %>
+      <%= link_to user_path(user) do %>
         <div class="panel-block user-list">
           <article class="media">
             <div class="media-left">
               <figure class="image is-32x32">
-                <% if user.image.url.nil? %>
-                    <%= image_tag "https://bulma.io/images/placeholders/32x32.png",style: "height:32px; width:32px;" %>
+                <% if user.avatar.attached? %>
+                    <%= image_tag user.avatar ,style: "height:32px; width:32px;" %>
                 <% else %>
-                  <%= image_tag (user.image.url) ,style: "height:32px; width:32px;" %>
+                    <%= image_tag "https://bulma.io/images/placeholders/32x32.png",style: "height:32px; width:32px;" %>
                 <% end %>
               </figure>
             </div>

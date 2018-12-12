@@ -5,13 +5,13 @@
         <article class="media">
           <div class="media-left">
             <figure>
-                <% if current_user.image.url.nil? %>
-                    <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
-                <% else %>
-                  <%= link_to user_path(current_user) do %>
-                    <%= image_tag (current_user.image.url) ,style: "height:66px; width:66px;" %>
-                  <% end %>
+              <% if current_user.avatar.attached? %>
+                <%= link_to user_path(current_user) do %>
+                  <%= image_tag current_user.avatar ,style: "height:66px; width:66px;" %>
                 <% end %>
+              <% else %>
+                  <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+              <% end %>
             </figure>
           </div>
           <div class="media-content">
