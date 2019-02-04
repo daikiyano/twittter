@@ -28,5 +28,14 @@ class User < ApplicationRecord
             following.include?(other_user)
          end
 
+         has_many :likes, dependent: :destroy
+
+      def self.search(search)
+        if search
+          where(['username LIKE ?', "%#{search}%"])
+        else
+         all
+        end
+      end
 
 end
