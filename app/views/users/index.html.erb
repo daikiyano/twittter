@@ -1,24 +1,38 @@
 
-<h1 style="font-size:30px;">All user</h1>
+<h1 style="font-size:30px; class="user-all"">All user</h1>
 
 <div class="wrapper">
 
-
-<%= will_paginate %>
-    <% @users.each do |user| %>
-    <div style="margin-left: 600px;">
-      <h2 style="font-size:20px;"><%= user.username %></h2>
-
-      <figure class="image is-128x128">
-        <% if user.avatar.attached? %>
-          <%= link_to user_path(user) do %>
-            <%= image_tag (user.avatar) ,style: "height:128px; width:128px;" %>
-          <% end %>
-        <% else %>
-            <%= image_tag "https://bulma.io/images/placeholders/128x128.png",class: "is-rounded",style: "height:128px; width:128px;" %>
-        <% end %>
-     </figure>
+    <div style="width:80%;">
+      <div class="user-all" ">
+      <%= will_paginate %>
+        <!-- 検索拡張機能 -->
+          <h2 class="user-title">search username</h2>
+            <%= form_tag(users_path, :method => "get") do %>
+              <%= text_field_tag :search %>
+              <%= submit_tag "Search" ,:username => nil ,class: "button is-info"%>
+            <% end %>
+        </div>
+      </div>
+        <!-- ユーザー一覧 -->
+      <% @users.each do |user| %>
+        <div class="user-all">
+          <p><%= user.username %></p>
+            <figure class="image is-128x128">
+                <% if user.avatar.attached? %>
+                  <%= link_to user_path(user) do %>
+                    <%= image_tag (user.avatar) ,style: "height:128px; width:128px;" %>
+                  <% end %>
+                <% else %>
+                  <%= link_to user_path(user) do %>
+                    <%= image_tag "https://bulma.io/images/placeholders/128x128.png",class: "is-rounded",style: "height:128px; width:128px;" %>
+                  <% end %>
+                <% end %>
+            </figure>
+        </div>
+      <% end %>
+      <div class="user-all">
+      <%= will_paginate %>
     </div>
-    <% end %>
-  <%= will_paginate %>
+
   </div>
