@@ -1,17 +1,17 @@
 <%= render 'profile' %>
 
-<% @user.followers.each do |user| %>
-<table>
-<tr>
-  <td><%= user.username %> </td>
-  <td><% if user.avatar.attached? %>
-        <%= image_tag (user.avatar) ,style: "height:66px; width:66px;" %>
-      <% else %>
-        <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
-      <% end %>
-  </td>
-  <td><%= link_to '詳細', user_path(user) %></td>
-</tr>
-
-</table>
-<% end %>
+    <!-- フォロワー表示　-->
+    <% @user.followers.each do |user| %>
+      <table>
+        <tr>
+          <td><%= user.username %> </td>
+          <td><% if user.avatar.attached? %>
+                <%= image_tag (user.avatar) ,style: "height:66px; width:66px;" %>
+              <% else %>
+                <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+              <% end %>
+          </td>
+          <td><%= link_to '詳細', user_path(user) %></td>
+        </tr>
+      </table>
+    <% end %>
