@@ -1,60 +1,62 @@
 <div class="column is-half">
-  <% if user_signed_in? %>
-  <article class="media box">
-    <figure class="media-left">
-      <p class="image is-64x64">
-        <% if current_user.avatar.attached? %>
-          <%= link_to user_path(current_user) do %>
-            <%= image_tag current_user.avatar ,style: "height:66px; width:66px;" %>
-          <% end %>
-        <% else %>
-            <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
-        <% end %>
-      </p>
 
-    </figure>
-    <div class="media-content">
-        <%= render 'tweeets/form' %>
-    </div>
-
-  </article>
-<% end %>
-<% @tweeets.each do |tweeet| %>
-  <div class="box">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-64x64">
-          <% if tweeet.user.avatar.attached? %>
-            <%= image_tag tweeet.user.avatar ,style: "height:66px; width:66px;" %>
-          <% else %>
-              <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
-          <% end %>
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <strong><%= tweeet.user.name %></strong>
-          <small>@<%= tweeet.user.username %></small>
-          <p><%= tweeet.tweeet %></p>
-          <% if tweeet.image.attached? %>
-            <%= image_tag tweeet.image,style: 'height: 300px; width:300px;' %>
-          <% end %>
-        </div>
-          <nav class="level">
-            <div class="level-left is-mobile">
-              <%= link_to tweeet, class: "lavel-item" do %>
-                <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
-              <% end %>
-              <%= link_to edit_tweeet_path(tweeet),class: "level-item" do %>
-                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <% end %>
-              <%= link_to tweeet, method: :delete, data:{confirm: "Are you sure you want to delete this tweeet?"} do %>
-              <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-              <% end %>
+      <!-- ツイート投稿 -->
+        <% if user_signed_in? %>
+          <article class="media box">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <% if current_user.avatar.attached? %>
+                  <%= link_to user_path(current_user) do %>
+                    <%= image_tag current_user.avatar,class: "user-image" %>
+                  <% end %>
+                <% else %>
+                    <%= image_tag "https://bulma.io/images/placeholders/64x64.png",class: "user-image" %>
+                <% end %>
+              </p>
+            </figure>
+            <div class="media-content">
+                <%= render 'tweeets/form' %>
             </div>
-          </nav>
+          </article>
+        <% end %>
+
+        <!-- ツイート一覧 -->
+        <% @tweeets.each do |tweeet| %>
+          <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <% if tweeet.user.avatar.attached? %>
+                    <%= image_tag tweeet.user.avatar,class: "user-image"%>
+                  <% else %>
+                      <%= image_tag "https://bulma.io/images/placeholders/64x64.png",class: "user-image" %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <strong><%= tweeet.user.name %></strong>
+                  <small>@<%= tweeet.user.username %></small>
+                  <p><%= tweeet.tweeet %></p>
+                  <% if tweeet.image.attached? %>
+                    <%= image_tag tweeet.image,class: "tweet-image-size" %>
+                  <% end %>
+                </div>
+                  <nav class="level">
+                    <div class="level-left is-mobile">
+                      <%= link_to tweeet, class: "lavel-item" do %>
+                        <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                      <% end %>
+                      <%= link_to edit_tweeet_path(tweeet),class: "level-item" do %>
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                      <% end %>
+                      <%= link_to tweeet, method: :delete, data:{confirm: "Are you sure you want to delete this tweeet?"} do %>
+                      <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                      <% end %>
+                    </div>
+                  </nav>
+                </div>
+           </article>
         </div>
-   </article>
-</div>
-<% end %>
+      <% end %>
 </div>

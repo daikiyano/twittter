@@ -23,7 +23,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body,:user_id,:tweeet_id)
-
   end
 
 end

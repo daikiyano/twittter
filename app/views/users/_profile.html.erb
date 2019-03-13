@@ -1,65 +1,71 @@
+
+
 <div class="column is-one-quartar">
     <nav class="panel">
-      <p class="panel-heading">Profile</p>
-      <div class="panel-block">
-        <article class="media">
-          <div class="media-left">
-            <figure>
-              <% if @user.avatar.attached? %>
-                <%= link_to user_path(@user) do %>
-                  <%= image_tag @user.avatar ,style: "height:66px; width:66px;" %>
-                <% end %>
-              <% else %>
-                  <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
-              <% end %>
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= @user.name %></strong>
-                <small>@<%= @user.username %></small>
-                <%= render 'follow_form' %>
-              </p>
+              <!-- プロフィール表示　-->
+            <p class="panel-heading">Profile</p>
+            <div class="panel-block">
+              <article class="media">
+                <div class="media-left">
+                  <figure>
+                    <% if @user.avatar.attached? %>
+                      <%= link_to user_path(@user) do %>
+                        <%= image_tag @user.avatar ,style: "height:66px; width:66px;" %>
+                      <% end %>
+                    <% else %>
+                        <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= @user.name %></strong>
+                      <small>@<%= @user.username %></small>
+                      <%= render 'follow_form' %>
+                    </p>
+                  </div>
+                </div>
+              </article>
             </div>
-          </div>
-        </article>
-      </div>
-      <div class="panel-block">
-        <div class="lavel is-mobile">
-          <div class="lavel-item has-centered-text">
-            <div>
-              <p class="heading">Tweets</p>
-              <p class="tutle is-6"><%= @user.tweeets.count %></p>
-            </div>
-          </div>
-          <div class="lavel-item has-centered-text">
-            <div>
-              <p class="heading">Following</p>
-              <p class="tutle is-6">
-                <a href="<%= following_user_path(@user) %>">
-                <strong id="following" class="stat">
-                  <%= @user.following.count %>
-                </strong>
-              </a>
-            </p>
-            </div>
-          </div>
-          <div class="lavel-item has-centered-text">
-            <div>
-              <p class="heading">Followers</p>
-              <p class="tutle is-6">
-                <a href="<%= followers_user_path(@user) %>">
-                  <strong id="followers" class="stat">
-                    <%= @user.followers.count %>
-                  </strong>
-                </a>
-              </p>
-            </div>
-          </div>
+              <!-- ツイート合計　-->
+            <div class="panel-block">
+                <div class="lavel is-mobile">
+                  <div class="lavel-item has-centered-text">
+                    <div>
+                    <p class="heading">Tweets</p>
+                    <p class="tutle is-6"><%= @user.tweeets.count %></p>
+                    </div>
+                </div>
 
-        </div>
+                  <!-- フォロー数表示-->
+                <div class="lavel-item has-centered-text">
+                  <div>
+                    <p class="heading">Following</p>
+                    <p class="tutle is-6">
+                      <a href="<%= following_user_path(@user) %>">
+                      <strong id="following" class="stat">
+                        <%= @user.following.count %>
+                      </strong>
+                    </a>
+                  </p>
+                  </div>
+                </div>
 
-      </div>
+                  <!-- フォロワー数表示-->
+                <div class="lavel-item has-centered-text">
+                  <div>
+                    <p class="heading">Followers</p>
+                    <p class="tutle is-6">
+                      <a href="<%= followers_user_path(@user) %>">
+                        <strong id="followers" class="stat">
+                          <%= @user.followers.count %>
+                        </strong>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
     </nav>
 </div>

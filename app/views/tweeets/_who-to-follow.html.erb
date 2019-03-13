@@ -1,29 +1,31 @@
-<div class="column">
-  <nav class="panel">
-    <p class="panel-heading">Who to Follow</p>
-    <% @users.each do |user| %>
-      <%= link_to user_path(user) do %>
-        <div class="panel-block user-list">
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-32x32">
-                <% if user.avatar.attached? %>
-                    <%= image_tag user.avatar ,style: "height:32px; width:32px;" %>
-                <% else %>
-                    <%= image_tag "https://bulma.io/images/placeholders/32x32.png",style: "height:32px; width:32px;" %>
+
+    <!-- フォロリコメンド-->
+      <div class="column">
+          <nav class="panel">
+            <p class="panel-heading">Who to Follow</p>
+            <% @users.each do |user| %>
+              <%= link_to user_path(user) do %>
+                <div class="panel-block user-list">
+                  <article class="media">
+                    <div class="media-left">
+                      <figure class="image is-32x32">
+                        <% if user.avatar.attached? %>
+                            <%= image_tag user.avatar ,style: "height:32px; width:32px;" %>
+                        <% else %>
+                            <%= image_tag "https://bulma.io/images/placeholders/32x32.png",style: "height:32px; width:32px;" %>
+                        <% end %>
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <p>
+                          <%= user.username %>
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </div>
                 <% end %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <%= user.username %>
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <% end %>
-    <% end %>
-</nav>
-</div>
+            <% end %>
+          </nav>
+      </div>

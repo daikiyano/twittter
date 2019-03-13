@@ -2,32 +2,28 @@
     <nav class="panel">
       <p class="panel-heading">Profile</p>
       <div class="panel-block">
-        <article class="media">
-          <div class="media-left">
-            <figure>
-              <% if current_user.avatar.attached? %>
-                <%= link_to user_path(current_user) do %>
-                  <%= image_tag current_user.avatar ,style: "height:66px; width:66px;" %>
+          <article class="media">
+            <div class="media-left">
+              <figure>
+                <% if current_user.avatar.attached? %>
+                  <%= link_to user_path(current_user) do %>
+                    <%= image_tag current_user.avatar ,style: "height:66px; width:66px;" %>
+                  <% end %>
+                <% else %>
+                    <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
                 <% end %>
-              <% else %>
-                  <%= image_tag "https://bulma.io/images/placeholders/64x64.png",style: "height:66px; width:66px;" %>
-              <% end %>
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= current_user.name %></strong>
-                <small>@<%= current_user.username %></small>
-              </p>
-
+              </figure>
             </div>
-
-          </div>
-
-        </article>
-
-      </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= current_user.name %></strong>
+                  <small>@<%= current_user.username %></small>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
       <div class="panel-block">
         <div class="lavel is-mobile">
           <div class="lavel-item has-centered-text">

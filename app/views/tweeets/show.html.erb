@@ -1,27 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Tweeet:</strong>
-  <%= @tweeet.tweeet %>
-</p>
+      <!-- ツイート表示　-->
+  <p>
+    <strong>Tweeet:</strong>
+      <%= @tweeet.tweeet %>
+  </p>
 
-<% @comments.each do |comment| %>
-<%= comment.body %>
-@<%= comment.user.username %>
-<% if comment.user == current_user  %>
-<i class="fas fa-trash-alt"></i>
-<h1><%= link_to 'Delete Comment',  tweeet_comment_path(comment.tweeet_id,comment.id), method: :delete,data: {confirm: 'Are you sure this comment delete ?'} %></h1>
+    <!-- コメント表示　-->
+  <% @comments.each do |comment| %>
+    <%= comment.body %>
+    @<%= comment.user.username %>
+      <% if comment.user == current_user  %>
+          <i class="fas fa-trash-alt"></i>
+          <h1><%= link_to 'Delete Comment',  tweeet_comment_path(comment.tweeet_id,comment.id),
+              method: :delete,data: {confirm: 'Are you sure this comment delete ?'} %></h1>
+      <% end %>
+  <% end %>
+    <!-- コメント投稿機能　-->
+  <%= form_for [@tweeet,@comment] do |f| %>
+    <%= f.text_field :body %>
+    <%= f.hidden_field :user_id, :value=> current_user.id %>
+    <%= f.hidden_field :post_id, :value=> @tweeet.id %><br>
+    <%= f.submit 'Add Comment',class: "button is-info" %>
+  <% end %>
 
-<% end %>
-<% end %>
-
-<%= form_for [@tweeet,@comment] do |f| %>
-  <%= f.text_field :body %>
-  <%= f.hidden_field :user_id, :value=> current_user.id %>
-  <%= f.hidden_field :post_id, :value=> @tweeet.id %><br>
-  <%= f.submit 'Add Comment',class: "button is-info" %>
-
-<% end %>
-
-<%= link_to 'Edit', edit_tweeet_path(@tweeet) %> |
-<%= link_to 'Back', tweeets_path %>
+  <%= link_to 'Edit', edit_tweeet_path(@tweeet) %> |
+  <%= link_to 'Back', tweeets_path %>

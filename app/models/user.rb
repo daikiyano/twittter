@@ -15,6 +15,8 @@ class User < ApplicationRecord
          has_many :passive_relationships, class_name: "Relationship",foreign_key: "followed_id", dependent:   :destroy
          has_many :followers, through: :passive_relationships, source: :follower
 
+         has_many :likes, dependent: :destroy
+
 
          def follow(other_user)
            following << other_user
@@ -28,14 +30,13 @@ class User < ApplicationRecord
             following.include?(other_user)
          end
 
-         has_many :likes, dependent: :destroy
-
-      def self.search(search)
-        if search
-          where(['username LIKE ?', "%#{search}%"])
-        else
-         all
-        end
-      end
+          #検索用
+          def self.search(search)
+            if search
+              where(['username LIKE ?', "%#{search}%"])
+            else
+             all
+            end
+          end
 
 end
